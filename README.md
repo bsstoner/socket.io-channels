@@ -69,4 +69,4 @@ check out [Push-It](https://github.com/aaronblohowiak/Push-It) or [Juggernaut](h
 ## Questions / Need Help?
   I like node and I like making real time/interactive javascript apps, hit me up:
 
-  bsstoner@gmail.com (@bsstoner))
+  bsstoner@gmail.com (@bsstoner)
