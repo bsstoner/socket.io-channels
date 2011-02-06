@@ -43,6 +43,9 @@ seems to make sense to break it off into a reusable module
       // add stuff here...
     })
 
+Check out the included example in the project, for a modified version of
+the socket.io chat example that adds multi-channel functionality.
+
 ## socket.io-channels is
 
   - A 'plugin' for socket.io.  It's meant to live alongside socket.io not
