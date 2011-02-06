@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>socket.io client test</title>
+    <script src="/json.js"></script> <!-- for ie -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io-channels-client.js"></script>
+  </head>
+  <body>
+
+    <script>
+      var username = "User_" + new Date().getTime();
+
+      // My client side Channels class wraps socket.io:
+      var channel = new SocketIOChannel({
+        host: "localhost",
+        port: 8000,
+        channelId: window.location.search.replace("?room=","room"),
+
+        // <session> (optional) - use this to pass session cookie info or other
+        // unique user identifier to connect the websocket session with
+        // a user session on the server.
+        session: {username: username},
+
+        // if client is disconnected, automatically try to
+        // reconnect to the channel and restore session.  You'll
+        // need to use a persistent store on the server like connect-redis
+        // for socket.io-channels
+        reconnectOnDisconnect: true,
+        reconnectRetryInterval: 1000 * 10 // try to reconnect every 30 seconds
+      });
+
+
+      function message(htmlMessage){
+        var el = document.createElement('p');
+        el.innerHTML = htmlMessage;
+        document.getElementById('chat').appendChild(el);
+        document.getElementById('chat').scrollTop = 1000000;
+      }
+
+      function send(){
+        var val = document.getElementById('text').value;
+
+        // send to server and broadcast to channel:
+        channel.send('chat',{message: val, username: username})
+
+        // add to dom locally:
+        message('<b>Me</b> ' + val);
+
+        document.getElementById('text').value = '';
+      }
+
+      channel.on('chat', function(obj){
+        message('<b>' + obj.username + ':</b> ' + obj.message);
+      });
+
+      channel.on('announcement', function(obj){
+        message('<em>' + obj.announcement + '</em>');
+      });
+
+      channel.on('connect', function(obj){
+        document.getElementById('chat').innerHTML = "";
+        document.getElementById('form').style.display = "block";
+      });
+
+      channel.on('disconnect', function(obj){
+        document.getElementById('chat').innerHTML = "Disconnected, trying to reconnect...";
+        document.getElementById('form').style.display = "none";
+      })
+
+      channel.on('connectionRetry', function(obj){
+        document.getElementById('chat').innerHTML = "Trying to Reconnect...";
+        setTimeout(function(){
+          if (!channel.connected){
+            document.getElementById('chat').innerHTML = "Waiting to Try to Reconnect Again...";
+          }
+        },8000);
+      })
+    </script>
+    
+    <h1>Sample chat client</h1>
+    <div id="chat"><p>Connecting...</p></div>
+    <form action="" id="form" onsubmit="send(); return false">
+      <input type="text" autocomplete="off" id="text"><input type="submit" value="Send">
+    </form>
+    
+    <style>
+      #chat { height: 300px; overflow: auto; width: 800px; border: 1px solid #eee; font: 13px Helvetica, Arial; }
+      #chat p { padding: 8px; margin: 0; }
+      #chat p:nth-child(odd) { background: #F6F6F6; }
+      #form { width: 782px; background: #333; padding: 5px 10px; display: none; }
+      #form input[type=text] { width: 700px; padding: 5px; background: #fff; border: 1px solid #fff; }
+      #form input[type=submit] { cursor: pointer; background: #999; border: none; padding: 6px 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; margin-left: 5px; text-shadow: 0 1px 0 #fff; }
+      #form input[type=submit]:hover { background: #A2A2A2; }
+      #form input[type=submit]:active { position: relative; top: 2px; }
+    </style>
+    
+  </body>
+</html>
+

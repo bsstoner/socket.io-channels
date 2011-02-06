@@ -1,0 +1,6 @@
+[submodule "support/Socket.IO-node"]
+	path = support/Socket.IO-node
+	url = https://github.com/LearnBoost/Socket.IO-node.git
+[submodule "support/node-websocket-client"]
+	path = support/node-websocket-client
+	url = https://github.com/pgriess/node-websocket-client.git

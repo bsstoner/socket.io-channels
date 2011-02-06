@@ -1,0 +1,12 @@
+{
+  "name": "socket.io-channels",
+  "description": "multi-channel plugin for socket.io",
+  "version": "0.0.1",
+  "author": "Brian Stoner <bsstoner@gmail.com>",
+  "main": "./index.js",
+  "dependencies": {
+    "socket.io": ">= 0.6.0"
+  },
+  "engines": { "node": ">= 0.2.6" }
+}
+
