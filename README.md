@@ -16,7 +16,7 @@ seems to make sense to break it off into a reusable module
     server.listen(8000);
 
     var socket = io.listen(server)
-        channel = channels.listen(socket, {})
+      , channel = channels.listen(socket, {})
 
     channel.on('connectedToChannel', function(client, sessionInfo){
       channel.broadcastToChannel(
@@ -38,29 +38,32 @@ seems to make sense to break it off into a reusable module
       channel.broadcastToChannel('chat', msg.channelId, msg, client.sessionId)
     })
 
-### It is
+## socket.io-channels is
 
-  A 'plugin' for socket.io.  It's meant to live alongside socket.io not
+  - A 'plugin' for socket.io.  It's meant to live alongside socket.io not
 wrap it completely.
 
-  Pretty simple to add onto an existing socket.io implementation, and
+  - Pretty simple to add onto an existing socket.io implementation, and
 turn on per-channel messaging
 
-  Trying to only add channel message delivery and stay out of the way.
+  - Trying to only add channel message delivery and stay out of the way.
 
-### It is not
+## socket.io-channels is not
 
-  Compliant with any standards like [bayeux](http://svn.cometd.com/trunk/bayeux/bayeux.html).  It's simple and met the current use cases I have.
+  - Compliant with any standards like [bayeux](http://svn.cometd.com/trunk/bayeux/bayeux.html).  It's simple and met the current use cases I have.
 
-  Secure.  You need to implement your own authentication or security
+  - Secure.  You need to implement your own authentication or security
 protocol either by attaching to the events emitted by socket.io or
 socket.io-channels.
 
-  Persistent.  It provides simple built-in in-memory channel/session storage, with the option of passing another store (i.e. connect-redis)
+  - Persistent.  It provides simple built-in in-memory channel/session storage, with the option of passing another store (i.e. connect-redis)
 
   (If you're looking for a more full featured multi-channel socket.io solution,
 check out [Push-It](https://github.com/aaronblohowiak/Push-It) or [Juggernaut](https://github.com/maccman/juggernaut))
 
-### Questions / Need Help?
+## Questions / Need Help?
+  I love node making and real time/interactive apps, hit me up:
+
   bsstoner@gmail.com
+
   @bsstoner
