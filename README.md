@@ -38,6 +38,11 @@ seems to make sense to break it off into a reusable module
       channel.broadcastToChannel('chat', msg.channelId, msg, client.sessionId)
     })
 
+    // you can still use socket as normal, without channels
+    socket.on('connection',function(client){
+      // add stuff here...
+    })
+
 ## socket.io-channels is
 
   - A 'plugin' for socket.io.  It's meant to live alongside socket.io not
@@ -62,8 +67,6 @@ socket.io-channels.
 check out [Push-It](https://github.com/aaronblohowiak/Push-It) or [Juggernaut](https://github.com/maccman/juggernaut))
 
 ## Questions / Need Help?
-  I love node making and real time/interactive apps, hit me up:
+  I like node and I like making real time/interactive javascript apps, hit me up:
 
-  bsstoner@gmail.com
-
-  @bsstoner
+  bsstoner@gmail.com (@bsstoner))
