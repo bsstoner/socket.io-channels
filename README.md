@@ -54,7 +54,7 @@ wrap it completely.
   - Pretty simple to add onto an existing socket.io implementation, and
 turn on per-channel messaging
 
-  - Trying to only add channel message delivery and stay out of the way.
+  - Trying to just add multi-channel message delivery, and stay out of the way to let you do whatever else you want on top of socket.io.
 
 ## socket.io-channels is not
 
