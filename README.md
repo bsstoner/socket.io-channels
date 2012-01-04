@@ -1,3 +1,6 @@
+# DO NOT USE!!!!
+  Use latest version of socket.io instead, it has this stuff built in :)
+  
 # socket.io-channels
 
   Simple plugin for node.js/socket.io to enable multi-channel messaging.
@@ -5,9 +8,6 @@
   I've been reusing this piece of functionality in several apps, so it
 seems to make sense to break it off into a reusable module
 
-## Psssssst...
-
-  Use socket.io 0.7 instead, it has this stuff built in :)
 
 ## Example
 
